@@ -1,0 +1,45 @@
+{
+    "name": "zapelite-pro-desktop",
+    "version": "1.0.0",
+    "description": "WhatsApp Marketing SaaS Desktop Application",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "obfuscate": "node obfuscate.js",
+        "dist": "npm run obfuscate && electron-builder --win"
+    },
+    "devDependencies": {
+        "electron": "^31.0.0",
+        "electron-builder": "^24.13.3",
+        "javascript-obfuscator": "^5.1.0"
+    },
+    "dependencies": {
+        "electron-updater": "^6.1.7"
+    },
+    "build": {
+        "appId": "com.zapelite.pro",
+        "productName": "ZapElite Pro",
+        "copyright": "Copyright © 2026 ZapElite",
+        "publish": [
+            {
+                "provider": "github",
+                "owner": "SEU_USUARIO_GITHUB",
+                "repo": "NOME_DO_REPOSITORIO"
+            }
+        ],
+        "win": {
+            "target": [
+                "nsis"
+            ],
+            "icon": "logo.png"
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true,
+            "artifactName": "ZapElite_Pro_Setup_${version}.exe"
+        },
+        "directories": {
+            "output": "dist"
+        }
+    }
+}
