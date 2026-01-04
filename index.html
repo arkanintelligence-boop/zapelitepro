@@ -25,7 +25,7 @@
             <a href="#features">Recursos</a>
             <a href="#pricing">Planos</a>
             <a href="mailto:arkanintelligence@gmail.com">Suporte</a>
-            <a href="#" class="btn-download-small">Baixar para Windows</a>
+            <a href="download/ZapElite_Pro_Setup_1.0.0.exe" class="btn-download-small">Baixar para Windows</a>
         </div>
     </nav>
 
@@ -34,7 +34,7 @@
         <h1>Domine o WhatsApp com a <span>Tecnologia Elite</span></h1>
         <p>A solução definitiva para disparos em massa estratégicos. Alcance milhares de clientes com inteligência
             artificial, anti-ban avançado e personalização humana.</p>
-        <a href="#" class="btn-hero">
+        <a href="download/ZapElite_Pro_Setup_1.0.0.exe" class="btn-hero">
             <i data-lucide="download"></i>
             Baixar ZapElite Pro v1.0.0
         </a>
@@ -145,7 +145,9 @@
         document.querySelectorAll('.btn-hero, .btn-download-small').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
+                const downloadUrl = btn.getAttribute('href');
                 const originalText = btn.innerHTML;
+
                 btn.style.opacity = '0.7';
                 btn.innerHTML = '<i data-lucide="loader-2" class="spin"></i> Iniciando...';
                 lucide.createIcons();
@@ -154,8 +156,8 @@
                     btn.innerHTML = originalText;
                     btn.style.opacity = '1';
                     lucide.createIcons();
-                    alert('Seu download do ZapElite Pro v1.0.0 começará em instantes!');
-                }, 1500);
+                    window.location.href = downloadUrl;
+                }, 1000);
             });
         });
     </script>
