@@ -472,16 +472,25 @@ footer {
         font-size: 1.1rem;
     }
 
+    .footer-logo {
+        margin-bottom: 40px !important;
+    }
+
     .footer-logo .logo-wrapper img {
-        height: 50px !important;
+        height: 55px !important;
     }
 
     .footer-logo .logo-wrapper span {
-        font-size: 1.5rem !important;
+        font-size: 1.6rem !important;
+    }
+
+    .footer-links {
+        gap: 35px !important;
+        margin-bottom: 40px !important;
     }
 
     .footer-links a {
-        font-size: 0.7rem !important;
+        font-size: 0.85rem !important;
     }
 
     .nav-links {
