@@ -409,20 +409,32 @@ footer {
     text-align: center;
 }
 
-.footer-logo {
-    margin-bottom: 30px;
+.footer-logo .logo-wrapper img {
+    height: 60px;
+}
+
+.footer-logo .logo-wrapper span {
+    font-size: 1.8rem;
 }
 
 .footer-links {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    margin-bottom: 40px;
+    gap: 30px;
+    margin-bottom: 30px;
 }
 
 .footer-links a {
     color: var(--text-muted);
     text-decoration: none;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    opacity: 1;
 }
 
 .copyright {
