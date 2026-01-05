@@ -953,3 +953,56 @@ footer {
         width: 90vw;
     }
 }
+
+/* Floating Support Button */
+.float-support {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--gradient);
+    color: #000;
+    padding: 15px 25px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.95rem;
+    z-index: 999;
+    box-shadow: 0 10px 30px rgba(30, 215, 96, 0.4);
+    animation: pulseGlow 3s infinite;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.float-support i {
+    width: 22px;
+    height: 22px;
+}
+
+.float-support:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 15px 40px rgba(30, 215, 96, 0.6);
+    color: #000;
+}
+
+@media (max-width: 768px) {
+    .float-support {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 0.85rem;
+    }
+
+    .float-support span {
+        display: none;
+        /* Em telas muito pequenas fica so o icone se precisar, ou mantem texto curto */
+    }
+
+    .float-support {
+        padding: 15px;
+        width: 55px;
+        height: 55px;
+        justify-content: center;
+    }
+}
