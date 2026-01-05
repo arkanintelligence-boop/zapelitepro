@@ -628,21 +628,22 @@ footer {
     backdrop-filter: blur(20px);
     border: 1px solid rgba(30, 215, 96, 0.3) !important;
     border-radius: 40px !important;
-    padding: 60px !important;
+    padding: 40px !important;
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: column !important;
     align-items: center !important;
-    justify-content: space-between !important;
-    gap: 60px !important;
+    justify-content: center !important;
+    gap: 30px !important;
     z-index: 10;
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .trial-content {
-    max-width: 600px !important;
-    text-align: left !important;
+    max-width: 100% !important;
+    text-align: center !important;
 }
 
 .trial-content h2 {
@@ -656,10 +657,12 @@ footer {
     display: flex !important;
     gap: 15px !important;
     margin-top: 30px !important;
+    justify-content: center !important;
 }
 
 .trial-form input {
-    flex: 1 !important;
+    max-width: 400px !important;
+    width: 100% !important;
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     padding: 18px 25px !important;
