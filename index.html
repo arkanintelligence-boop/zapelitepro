@@ -85,28 +85,32 @@
         </div>
     </section>
 
-    <!-- SEÇÃO TESTE GRÁTIS -->
+    <!-- SEÇÃO TESTE GRÁTIS PREMUM -->
     <section class="trial-section">
         <div class="trial-card">
-            <div class="trial-content" style="text-align: left;">
-                <div class="badge">EXPERIMENTE AGORA</div>
-                <h2 style="font-size: 2.5rem; margin: 20px 0;">Libere <span style="color: var(--primary);">3 Dias
+            <div class="trial-content">
+                <div class="badge">TESTE GRÁTIS</div>
+                <h2 style="font-size: 3rem; margin: 20px 0;">Libere <span style="color: var(--primary);">3 Dias
                         Grátis</span> HOJE!</h2>
-                <p style="color: var(--text-muted); margin-bottom: 30px;">Teste todas as funções do ZapElite Pro sem
-                    gastar nada. Sem cartão de crédito necessário.</p>
+                <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">Tenha acesso total a todas
+                    as ferramentas do ZapElite Pro v1.0.0. Comece sua automação agora sem compromisso.</p>
                 <div class="trial-form">
-                    <input type="email" id="trialEmail" placeholder="Seu melhor e-mail...">
-                    <button class="btn-trial" onclick="requestTrial()">Resgatar Acesso Grátis</button>
+                    <input type="email" id="trialEmail" placeholder="Digite seu e-mail...">
+                    <button class="btn-trial" onclick="requestTrial()">Ativar Teste Agora</button>
                 </div>
                 <div id="trialResult" class="trial-result" style="display: none;">
-                    <p style="font-size: 0.8rem; color: var(--text-muted);">Sua Chave de Teste:</p>
-                    <code id="trialKeyDisplay">ELITE-XXXX-XXXX</code>
-                    <p style="font-size: 0.75rem; margin-top: 10px; color: var(--primary);">Copie e cole no software!
+                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">Sua chave foi gerada:
                     </p>
+                    <code id="trialKeyDisplay">GERANDO-CHAVE...</code>
+                    <p style="font-size: 0.8rem; margin-top: 15px; color: var(--primary);">Copie e ative no seu
+                        software!</p>
                 </div>
             </div>
             <div class="trial-image">
-                <i data-lucide="gift" style="width: 120px; height: 120px; color: var(--primary); opacity: 0.2;"></i>
+                <div
+                    style="background: rgba(30, 215, 96, 0.1); width: 140px; height: 140px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(30, 215, 96, 0.2);">
+                    <i data-lucide="gift" style="width: 60px; height: 60px; color: var(--primary);"></i>
+                </div>
             </div>
         </div>
     </section>
