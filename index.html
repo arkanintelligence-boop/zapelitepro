@@ -99,11 +99,13 @@
                     <button class="btn-trial" onclick="requestTrial()">Ativar Teste Agora</button>
                 </div>
                 <div id="trialResult" class="trial-result" style="display: none;">
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">Sua chave foi gerada:
-                    </p>
-                    <code id="trialKeyDisplay">GERANDO-CHAVE...</code>
-                    <p style="font-size: 0.8rem; margin-top: 15px; color: var(--primary);">Copie e ative no seu
-                        software!</p>
+                    <i data-lucide="mail"
+                        style="width: 50px; height: 50px; color: var(--primary); margin-bottom: 20px;"></i>
+                    <h3 style="color: #fff; margin-bottom: 10px;">Licença Enviada!</h3>
+                    <p style="font-size: 1rem; color: var(--text-muted);">Verifique sua caixa de entrada (e pasta de
+                        spam). Sua chave de acesso e instruções de instalação já estão lá.</p>
+                    <button class="btn-trial" style="margin-top: 25px;" onclick="location.reload()">Solicitar para outro
+                        e-mail</button>
                 </div>
             </div>
         </div>
@@ -269,11 +271,11 @@
                 });
 
                 const data = await response.json();
-                if (data.key) {
-                    showNotification("Licença de teste liberada!");
+                if (response.ok) {
+                    showNotification("Licença enviada ao seu e-mail!", "success");
                     document.querySelector('.trial-form').style.display = 'none';
                     document.getElementById('trialResult').style.display = 'block';
-                    document.getElementById('trialKeyDisplay').innerText = data.key;
+                    lucide.createIcons();
                 } else {
                     showNotification(data.error || "Erro ao gerar teste.", "error");
                 }
