@@ -21,7 +21,7 @@
     font-family: 'Outfit', sans-serif;
 }
 
-/* Grid Background Global - Presença Máxima com Transições Suaves */
+/* Grid Background Global - Presença Máxima */
 body::before {
     content: "";
     position: fixed;
@@ -34,20 +34,32 @@ body::before {
         linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
     background-size: 50px 50px;
     z-index: -1;
-    /* Sobre o background do body */
     pointer-events: none;
+}
 
-    /* Máscara para suavizar as bordas e evitar cortes secos entre seções */
-    mask-image: linear-gradient(to bottom,
-            transparent 0%,
-            black 15%,
-            black 85%,
-            transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom,
-            transparent 0%,
-            black 15%,
-            black 85%,
-            transparent 100%);
+/* Efeito Glow Elite (.exe style) */
+.elite-glow-top-right {
+    position: fixed;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(30, 215, 96, 0.15) 0%, transparent 70%);
+    z-index: -2;
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.elite-glow-bottom-left {
+    position: fixed;
+    bottom: -200px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(30, 215, 96, 0.1) 0%, transparent 70%);
+    z-index: -2;
+    pointer-events: none;
+    border-radius: 50%;
 }
 
 /* Efeito de Energia Horizontal (Ripple) */
@@ -89,15 +101,14 @@ body::after {
 
 html {
     background-color: #000;
-    /* Fundo base no HTML para permitir que o grid no body apareça */
 }
 
 body {
+    background-color: #000 !important;
     color: var(--text-white);
     overflow-x: hidden;
     line-height: 1.6;
     position: relative;
-    background: transparent !important;
 }
 
 /* Background Gradients */
@@ -386,19 +397,8 @@ h1 span {
 /* Pricing */
 .pricing {
     padding: 100px 10%;
-    background: transparent;
+    background: #000;
     position: relative;
-}
-
-.pricing::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    left: 0;
-    width: 100%;
-    height: 101px;
-    background: linear-gradient(to top, #000, transparent);
-    z-index: 1;
 }
 
 .pricing-grid {
@@ -623,21 +623,9 @@ footer {
 /* Trial Section Premium */
 .trial-section {
     padding: 100px 10%;
-    background: transparent;
+    background: #000;
     position: relative;
-    overflow: visible;
-}
-
-/* Fades de Transição Superior e Inferior para o Trial */
-.trial-section::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 150px;
-    background: linear-gradient(to bottom, transparent, #000);
-    z-index: 5;
-    transform: translateY(-100%);
+    overflow: hidden;
 }
 
 .trial-card {
