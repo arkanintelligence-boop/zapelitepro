@@ -506,13 +506,57 @@ h1 span {
     font-weight: 700;
     text-decoration: none;
     display: inline-block;
-    transition: 0.3s;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Efeito de brilho interno passando */
+.btn-pricing::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -150%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transform: rotate(35deg);
+    transition: 0.8s;
+}
+
+.btn-pricing:hover::after {
+    left: 150%;
+}
+
+.btn-pricing:hover {
+    scale: 1.05;
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .price-card.popular .btn-pricing {
     background: var(--gradient);
     color: #000 !important;
     border: none;
+    animation: pulseGlow 3s infinite;
+    box-shadow: 0 0 20px rgba(30, 215, 96, 0.2);
+}
+
+.price-card.popular .btn-pricing:hover {
+    scale: 1.07;
+    box-shadow: 0 15px 35px rgba(30, 215, 96, 0.4);
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(30, 215, 96, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(30, 215, 96, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(30, 215, 96, 0); }
 }
 
 /* Footer */
