@@ -198,6 +198,10 @@ nav {
     font-weight: 700;
     text-decoration: none;
     transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 /* Hero Section */
@@ -687,6 +691,11 @@ footer {
     font-weight: 800 !important;
     cursor: pointer !important;
     white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    line-height: 1 !important;
 }
 
 .trial-result {
