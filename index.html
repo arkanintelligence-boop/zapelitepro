@@ -104,7 +104,7 @@
                 <h2 style="font-size: 3rem; margin: 20px 0;">Libere <span style="color: var(--primary);">3 Dias
                         Grátis</span> HOJE!</h2>
                 <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">Tenha acesso total a todas
-                    as ferramentas do ZapElite Pro v1.0.0. Comece sua automação agora sem compromisso.</p>
+                    as ferramentas do ZapElite Pro v1.0.3. Comece sua automação agora sem compromisso.</p>
                 <div class="trial-form">
                     <input type="email" id="trialEmail" placeholder="Digite seu e-mail...">
                     <button class="btn-trial" onclick="requestTrial()">Ativar Teste Agora</button>
@@ -115,8 +115,6 @@
                     <h3 style="color: #fff; margin-bottom: 10px;">Licença Enviada!</h3>
                     <p style="font-size: 1rem; color: var(--text-muted);">Verifique sua caixa de entrada (e pasta de
                         spam). Sua chave de acesso e instruções de instalação já estão lá.</p>
-                    <button class="btn-trial" style="margin-top: 25px;" onclick="location.reload()">Solicitar para outro
-                        e-mail</button>
                 </div>
             </div>
         </div>
@@ -264,6 +262,11 @@
         });
 
         async function requestTrial() {
+            // Verificação de segurança: Apenas um teste por dispositivo no site
+            if (localStorage.getItem('zapelite_trial_requested')) {
+                return showNotification("Você já solicitou um teste grátis para este dispositivo.", "error");
+            }
+
             const email = document.getElementById('trialEmail').value.trim();
             if (!email || !email.includes('@')) {
                 return showNotification("Por favor, insira um e-mail válido.", "error");
@@ -283,6 +286,9 @@
 
                 const data = await response.json();
                 if (response.ok) {
+                    // Marca o dispositivo como "já solicitou"
+                    localStorage.setItem('zapelite_trial_requested', 'true');
+
                     showNotification("Licença enviada ao seu e-mail!", "success");
                     document.querySelector('.trial-form').style.display = 'none';
                     document.getElementById('trialResult').style.display = 'block';
