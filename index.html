@@ -85,6 +85,32 @@
         </div>
     </section>
 
+    <!-- SEÇÃO TESTE GRÁTIS -->
+    <section class="trial-section">
+        <div class="trial-card">
+            <div class="trial-content" style="text-align: left;">
+                <div class="badge">EXPERIMENTE AGORA</div>
+                <h2 style="font-size: 2.5rem; margin: 20px 0;">Libere <span style="color: var(--primary);">3 Dias
+                        Grátis</span> HOJE!</h2>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">Teste todas as funções do ZapElite Pro sem
+                    gastar nada. Sem cartão de crédito necessário.</p>
+                <div class="trial-form">
+                    <input type="email" id="trialEmail" placeholder="Seu melhor e-mail...">
+                    <button class="btn-trial" onclick="requestTrial()">Resgatar Acesso Grátis</button>
+                </div>
+                <div id="trialResult" class="trial-result" style="display: none;">
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Sua Chave de Teste:</p>
+                    <code id="trialKeyDisplay">ELITE-XXXX-XXXX</code>
+                    <p style="font-size: 0.75rem; margin-top: 10px; color: var(--primary);">Copie e cole no software!
+                    </p>
+                </div>
+            </div>
+            <div class="trial-image">
+                <i data-lucide="gift" style="width: 120px; height: 120px; color: var(--primary); opacity: 0.2;"></i>
+            </div>
+        </div>
+    </section>
+
     <section class="pricing" id="pricing">
         <div class="section-head">
             <div class="badge">INVESTIMENTO</div>
@@ -213,6 +239,38 @@
                 }, 1200);
             });
         });
+        async function requestTrial() {
+            const email = document.getElementById('trialEmail').value.trim();
+            if (!email || !email.includes('@')) return alert("Por favor, insira um e-mail válido.");
+
+            const btn = document.querySelector('.btn-trial');
+            btn.innerHTML = '<i data-lucide="loader-2" class="spin" style="width:16px;"></i> Gerando...';
+            btn.disabled = true;
+            lucide.createIcons();
+
+            try {
+                const response = await fetch('https://kpkinuxrygtlcskehhcl.supabase.co/functions/v1/generate-trial', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                });
+
+                const data = await response.json();
+                if (data.key) {
+                    document.querySelector('.trial-form').style.display = 'none';
+                    document.getElementById('trialResult').style.display = 'block';
+                    document.getElementById('trialKeyDisplay').innerText = data.key;
+                } else {
+                    alert("Erro ao gerar teste: " + (data.error || "Tente novamente mais tarde."));
+                }
+            } catch (e) {
+                alert("Falha na conexão com o servidor.");
+            } finally {
+                btn.innerHTML = 'Resgatar Acesso Grátis';
+                btn.disabled = false;
+                lucide.createIcons();
+            }
+        }
     </script>
 </body>
 
