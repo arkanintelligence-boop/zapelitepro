@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZapElite Pro • Gerenciador de Licenças</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --primary: #1ed760;
+            --primary-hover: #1db954;
+            --bg: #0c1317;
+            --card-bg: #181818;
+            --text: #ffffff;
+            --text-muted: #b3b3b3;
+            --danger: #ff4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .admin-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: var(--primary);
+        }
+
+        option {
+            background-color: var(--card-bg);
+            color: var(--text);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+            transform: scale(1.02);
+        }
+
+        .generated-key {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(30, 215, 96, 0.1);
+            border-radius: 12px;
+            border: 1px dashed var(--primary);
+            text-align: center;
+            display: none;
+        }
+
+        .key-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            text-decoration: underline;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            background: var(--primary);
+            color: #000;
+            font-weight: 700;
+            display: none;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-container">
+        <div class="header">
+            <h2>Gerador de Licenças</h2>
+            <p>ZapElite Pro | Painel Administrativo</p>
+        </div>
+
+        <div class="form-group">
+            <label>Tipo de Plano</label>
+            <select id="planType">
+                <option value="Trial">Teste Grátis (3 dias)</option>
+                <option value="Mensal">Mensal (30 dias)</option>
+                <option value="Trimestral">Trimestral (90 dias)</option>
+                <option value="Anual">Anual (365 dias)</option>
+                <option value="Vitalicio">Vitalício (Para sempre)</option>
+            </select>
+        </div>
+
+        <button class="btn" onclick="generateKey()">
+            <i data-lucide="key"></i> Gerar Licença
+        </button>
+
+        <div id="result" class="generated-key">
+            <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">Licença Gerada com
+                Sucesso:</span>
+            <span id="keyDisplay" class="key-text">ELITE-XXXX-XXXX</span>
+            <button class="copy-btn" onclick="copyKey()">Copiar Chave</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Copiado com sucesso!</div>
+
+    <script>
+        const supabaseUrl = 'https://kpkinuxrygtlcskehhcl.supabase.co';
+        const supabaseKey = 'sb_publishable_Fvd19RLku9874XfmF29IZA_wx_ZyAct';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        lucide.createIcons();
+
+        function generateRandomKey() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let key = 'ELITE-';
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 4; j++) {
+                    key += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                if (i < 3) key += '-';
+            }
+            return key;
+        }
+
+        async function generateKey() {
+            const planType = document.getElementById('planType').value;
+            const key = generateRandomKey();
+
+            const { data, error } = await _supabase
+                .from('licenses')
+                .insert([{ key, plan_type: planType }]);
+
+            if (error) {
+                alert("Erro ao salvar no banco: " + error.message);
+                return;
+            }
+
+            document.getElementById('keyDisplay').innerText = key;
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function copyKey() {
+            const text = document.getElementById('keyDisplay').innerText;
+            navigator.clipboard.writeText(text);
+
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2000);
+        }
+    </script>
+</body>
+
+</html>

@@ -16,8 +16,6 @@
     <div class="bg-blobs">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-        <div class="blob blob-4"></div>
     </div>
 
     <nav>
@@ -29,7 +27,7 @@
             <a href="#features">Recursos</a>
             <a href="#pricing">Planos</a>
             <a href="mailto:arkanintelligence@gmail.com">Suporte</a>
-            <a href="download/ZapElite_Pro_Setup_1.0.1.zip" class="btn-download-small">Baixar para Windows</a>
+            <a href="download/ZapElite_Pro_Setup_1.0.0.exe" class="btn-download-small">Baixar para Windows</a>
         </div>
     </nav>
 
@@ -38,9 +36,9 @@
         <h1>Domine o WhatsApp com a <span>Tecnologia Elite</span></h1>
         <p>A solução definitiva para disparos em massa estratégicos. Alcance milhares de clientes com inteligência
             artificial, anti-ban avançado e personalização humana.</p>
-        <a href="download/ZapElite_Pro_Setup_1.0.1.zip" class="btn-hero">
+        <a href="download/ZapElite_Pro_Setup_1.0.0.exe" class="btn-hero">
             <i data-lucide="download"></i>
-            Baixar ZapElite Pro v1.0.1
+            Baixar ZapElite Pro v1.0.0
         </a>
         <p style="font-size: 0.85rem; margin-top: 20px; color: var(--text-muted);">Compatível com Windows 10/11 x64</p>
     </header>
@@ -51,21 +49,6 @@
             <h2>Por que escolher o ZapElite?</h2>
         </div>
         <div class="grid-features">
-            <div class="feature-card" style="border-color: var(--primary);">
-                <div
-                    style="position: absolute; top: 15px; right: 15px; background: var(--primary); color: #000; padding: 2px 10px; border-radius: 50px; font-size: 0.65rem; font-weight: 900;">
-                    NOVO</div>
-                <i data-lucide="flame" style="color: #ff9800;"></i>
-                <h3>Aquecimento Elite</h3>
-                <p>Aqueça seus chips simulando conversas humanas reais. Evite bloqueios e aumente o Trust Score da sua
-                    conta automaticamente.</p>
-            </div>
-            <div class="feature-card">
-                <i data-lucide="users"></i>
-                <h3>Extrator de Contatos</h3>
-                <p>Extraia todos os contatos reais de grupos e comunidades que você participa com apenas um clique.
-                    Gere leads infinitos.</p>
-            </div>
             <div class="feature-card">
                 <i data-lucide="shield-check"></i>
                 <h3>Escudo Anti-Ban IA</h3>
@@ -87,8 +70,8 @@
             <div class="feature-card">
                 <i data-lucide="file-spreadsheet"></i>
                 <h3>Importação Inteligente</h3>
-                <p>Basta subir seu arquivo .CSV. Nosso sistema é global e suporta automaticamente números de qualquer
-                    país (DDI).</p>
+                <p>Basta subir seu arquivo .CSV. Nosso sistema já está pré-configurado para o padrão de números
+                    brasileiros (+55).</p>
             </div>
             <div class="feature-card">
                 <i data-lucide="history"></i>
@@ -112,7 +95,7 @@
                 <h2 style="font-size: 3rem; margin: 20px 0;">Libere <span style="color: var(--primary);">3 Dias
                         Grátis</span> HOJE!</h2>
                 <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">Tenha acesso total a todas
-                    as ferramentas do ZapElite Pro v1.0.3. Comece sua automação agora sem compromisso.</p>
+                    as ferramentas do ZapElite Pro v1.0.0. Comece sua automação agora sem compromisso.</p>
                 <div class="trial-form">
                     <input type="email" id="trialEmail" placeholder="Digite seu e-mail...">
                     <button class="btn-trial" onclick="requestTrial()">Ativar Teste Agora</button>
@@ -123,6 +106,8 @@
                     <h3 style="color: #fff; margin-bottom: 10px;">Licença Enviada!</h3>
                     <p style="font-size: 1rem; color: var(--text-muted);">Verifique sua caixa de entrada (e pasta de
                         spam). Sua chave de acesso e instruções de instalação já estão lá.</p>
+                    <button class="btn-trial" style="margin-top: 25px;" onclick="location.reload()">Solicitar para outro
+                        e-mail</button>
                 </div>
             </div>
         </div>
@@ -196,7 +181,7 @@
             <h2 class="elite-gradient-text" style="font-size: 1.8rem; margin-bottom: 10px;">Prepare-se para o Elite!
             </h2>
             <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">O instalador do <strong>ZapElite
-                    Pro v1.0.1</strong> está sendo preparado. O download começará em instantes.</p>
+                    Pro v1.0.0</strong> está sendo preparado. O download começará em instantes.</p>
 
             <div
                 style="margin: 25px 0; background: rgba(30, 215, 96, 0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(30, 215, 96, 0.1); text-align: left;">
@@ -256,7 +241,7 @@
                 setTimeout(() => {
                     const link = document.createElement('a');
                     link.href = downloadUrl;
-                    link.download = 'ZapElite_Pro_Setup.zip';
+                    link.download = 'ZapElite_Pro_Setup.exe';
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
@@ -270,11 +255,6 @@
         });
 
         async function requestTrial() {
-            // Verificação de segurança: Apenas um teste por dispositivo no site
-            if (localStorage.getItem('zapelite_trial_requested')) {
-                return showNotification("Você já solicitou um teste grátis para este dispositivo.", "error");
-            }
-
             const email = document.getElementById('trialEmail').value.trim();
             if (!email || !email.includes('@')) {
                 return showNotification("Por favor, insira um e-mail válido.", "error");
@@ -294,9 +274,6 @@
 
                 const data = await response.json();
                 if (response.ok) {
-                    // Marca o dispositivo como "já solicitou"
-                    localStorage.setItem('zapelite_trial_requested', 'true');
-
                     showNotification("Licença enviada ao seu e-mail!", "success");
                     document.querySelector('.trial-form').style.display = 'none';
                     document.getElementById('trialResult').style.display = 'block';

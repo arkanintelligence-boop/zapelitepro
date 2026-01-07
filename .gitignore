@@ -1,0 +1,7 @@
+node_modules/
+dist/
+build/
+*.log
+.env
+backup.zip
+backup04-01-26.zip

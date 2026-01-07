@@ -1,0 +1,8 @@
+node_modules
+desktop
+.git
+*.zip
+backup*
+admin.html
+supabase-webhook.ts
+generate-trial.ts
