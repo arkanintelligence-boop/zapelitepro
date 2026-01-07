@@ -1,0 +1,26 @@
+# ZapElite Repository Ignore List
+
+# 1. Ignorar TUDO por padrão
+/*
+
+# 2. Permitir apenas arquivos públicos na raiz para o Easypanel
+!index.html
+!style.css
+!logo.png
+!Dockerfile
+!.dockerignore
+!.gitignore
+
+# 3. Bloqueio absoluto de pastas de código e admin
+/desktop/
+/site/
+/admin.html
+/supabase-webhook.ts
+/generate-trial.ts
+/node_modules/
+/dist/
+*.zip
+*.exe
+*.ts
+.env
+.DS_Store
