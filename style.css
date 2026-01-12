@@ -21,157 +21,25 @@
     font-family: 'Outfit', sans-serif;
 }
 
-/* Grid Background Global - Presença Máxima */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-        linear-gradient(rgba(30, 215, 96, 0.15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(30, 215, 96, 0.15) 1px, transparent 1px);
-    background-size: 60px 60px;
-    z-index: -1;
-    pointer-events: none;
-}
 
-/* Efeito Glow Elite (.exe style) */
-.elite-glow-top-right {
-    position: fixed;
-    top: -200px;
-    right: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(30, 215, 96, 0.15) 0%, transparent 70%);
-    z-index: -1;
-    pointer-events: none;
-    border-radius: 50%;
-}
-
-.elite-glow-bottom-left {
-    position: fixed;
-    bottom: -200px;
-    left: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(30, 215, 96, 0.1) 0%, transparent 70%);
-    z-index: -1;
-    pointer-events: none;
-    border-radius: 50%;
-}
-
-/* Efeito de Energia Horizontal (Ripple) */
-body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(255, 255, 255, 0.04) 50%,
-            transparent 100%);
-    z-index: -1;
-    pointer-events: none;
-    animation: energyRipple 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-@keyframes energyRipple {
-    0% {
-        left: -100%;
-        opacity: 0;
-    }
-
-    30% {
-        opacity: 1;
-    }
-
-    70% {
-        opacity: 1;
-    }
-
-    100% {
-        left: 200%;
-        opacity: 0;
-    }
-}
 
 html {
-    background-color: #000;
+    background-color: #050505;
 }
 
 body {
-    background-color: transparent;
+    background-color: #050505;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at top, #111 0%, #050505 100%);
+    background-size: 60px 60px, 60px 60px, 100% 100%;
+    background-attachment: fixed;
     color: var(--text-white);
     overflow-x: hidden;
     line-height: 1.6;
     position: relative;
-}
-
-/* Background Gradients */
-.bg-blobs {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-}
-
-.blob {
-    position: absolute;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-    filter: blur(120px);
-    opacity: 0.25;
-    border-radius: 50%;
-    animation: glowPulse 8s ease-in-out infinite alternate;
-}
-
-.blob-1 {
-    top: -300px;
-    right: -100px;
-}
-
-.blob-2 {
-    bottom: -300px;
-    left: -100px;
-    animation-delay: -2s;
-}
-
-.blob-3 {
-    top: 40%;
-    left: -200px;
-    width: 600px;
-    height: 600px;
-    opacity: 0.2;
-    animation-delay: -4s;
-}
-
-.blob-4 {
-    bottom: 20%;
-    right: -200px;
-    width: 500px;
-    height: 500px;
-    opacity: 0.15;
-    animation-delay: -6s;
-}
-
-@keyframes glowPulse {
-    from {
-        transform: scale(1);
-        opacity: 0.15;
-    }
-
-    to {
-        transform: scale(1.3);
-        opacity: 0.35;
-    }
+    min-height: 100vh;
 }
 
 /* Navigation */
@@ -234,6 +102,29 @@ nav {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-download-small:hover {
+    scale: 1.05;
+    box-shadow: 0 5px 20px rgba(30, 215, 96, 0.4);
+}
+
+.btn-download-small::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    transform: rotate(35deg);
+    animation: shineEffect 3s infinite;
 }
 
 /* Hero Section */
@@ -334,7 +225,9 @@ h1 span {
 }
 
 .btn-hero:hover {
-    transform: scale(1.05) translateY(-5px);
+    scale: 1.07;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(30, 215, 96, 0.5);
 }
 
 /* Features */
@@ -461,7 +354,7 @@ h1 span {
     background: var(--card-bg);
     overflow: hidden;
     z-index: 10;
-    box-shadow: 0 0 40px rgba(30, 215, 96, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
 .price-card.popular::before {
@@ -472,11 +365,12 @@ h1 span {
     width: 200%;
     height: 200%;
     background: conic-gradient(transparent,
-            rgba(30, 215, 96, 0.4),
+            rgba(30, 215, 96, 0.2),
             var(--primary),
-            rgba(30, 215, 96, 0.4),
+            rgba(30, 215, 96, 0.2),
             transparent 30%);
-    animation: borderRotate 4s linear infinite;
+    animation: borderRotate 8s linear infinite;
+    opacity: 0.4;
     z-index: -2;
 }
 
@@ -484,7 +378,7 @@ h1 span {
     content: '';
     position: absolute;
     inset: 2px;
-    background: linear-gradient(180deg, rgba(30, 215, 96, 0.05) 0%, #111 100%);
+    background: linear-gradient(180deg, rgba(30, 215, 96, 0.02) 0%, #0f0f0f 100%);
     border-radius: 38px;
     z-index: -1;
 }
@@ -574,8 +468,24 @@ h1 span {
     background: var(--gradient);
     color: #000 !important;
     border: none;
-    animation: pulseGlow 3s infinite;
-    box-shadow: 0 0 20px rgba(30, 215, 96, 0.2);
+    box-shadow: 0 5px 15px rgba(30, 215, 96, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.price-card.popular .btn-pricing::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    transform: rotate(35deg);
+    animation: shineEffect 3s infinite;
 }
 
 .price-card.popular .btn-pricing:hover {
@@ -715,7 +625,7 @@ footer {
 }
 
 .trial-card {
-    background: #0a0a0a !important;
+    background: transparent !important;
     backdrop-filter: blur(20px);
     border-radius: 40px !important;
     padding: 60px 40px !important;
@@ -731,7 +641,32 @@ footer {
     text-align: center;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: none !important;
+}
+
+.trial-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent,
+            rgba(30, 215, 96, 0.3),
+            var(--primary),
+            rgba(30, 215, 96, 0.3),
+            transparent 30%);
+    animation: borderRotate 4s linear infinite;
+    z-index: -2;
+}
+
+.trial-card::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #0a0a0a;
+    border-radius: 38px;
+    z-index: -1;
 }
 
 .trial-content {
@@ -778,6 +713,29 @@ footer {
     justify-content: center !important;
     gap: 12px !important;
     line-height: 1 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.btn-trial::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    transform: rotate(35deg);
+    animation: shineEffect 3s infinite;
+}
+
+.btn-trial:hover {
+    scale: 1.07 !important;
+    box-shadow: 0 15px 45px rgba(30, 215, 96, 0.5) !important;
 }
 
 .trial-result {
@@ -971,7 +929,6 @@ footer {
     font-size: 0.95rem;
     z-index: 999;
     box-shadow: 0 10px 30px rgba(30, 215, 96, 0.4);
-    animation: pulseGlow 3s infinite;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -996,7 +953,6 @@ footer {
 
     .float-support span {
         display: none;
-        /* Em telas muito pequenas fica so o icone se precisar, ou mantem texto curto */
     }
 
     .float-support {
