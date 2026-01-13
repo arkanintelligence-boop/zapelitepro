@@ -1,16 +1,14 @@
 # ZapElite Repository Ignore List
 
-# Files to keep
+# Files to keep (Root)
 !index.html
 !style.css
 !logo.png
+!Dockerfile
 !.gitignore
 
-# Folders to keep
-!site/**
-!admin-licencas/**
-
 # Patterns to ignore
+admin-licencas/
 node_modules/
 dist/
 *.zip
@@ -22,5 +20,6 @@ config.js
 **/node_modules/
 **/dist/
 **/dist-*
+backups/
 push_error.txt
 tmp_utils.txt
