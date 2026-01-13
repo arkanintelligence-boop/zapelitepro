@@ -32,6 +32,39 @@
         <h1>Domine o WhatsApp com a <span>Tecnologia Elite</span></h1>
         <p>A solução definitiva para disparos em massa estratégicos. Alcance milhares de clientes com inteligência
             artificial, anti-ban avançado e personalização humana.</p>
+
+        <div class="vsl-container">
+            <div class="vsl-wrapper" id="vslWrapper">
+                <div class="vsl-player" id="vslPlayer">
+                    <div class="custom-video-container">
+                        <video id="vslVideo" muted playsinline loop autoplay>
+                            <source src="https://pub-a772dcccd942498d933354c58ab4ce29.r2.dev/vsl/vsl-zapelite.mp4"
+                                type="video/mp4">
+                        </video>
+
+                        <!-- Overlay de Som (Smart Autoplay) aparece direto -->
+                        <div id="soundOverlay" class="video-sound-overlay" onclick="enableSound(event)">
+                            <div class="sound-badge">
+                                <h4>Seu vídeo já começou!</h4>
+                                <i data-lucide="volume-x" stroke-width="3"></i>
+                                <p>Clique para ativar o som</p>
+                            </div>
+                        </div>
+
+                        <!-- Controles Customizados -->
+                        <div class="video-controls">
+                            <button class="play-pause-btn" onclick="togglePlay(event)">
+                                <i id="playPauseIcon" data-lucide="pause"></i>
+                            </button>
+                            <div class="progress-container" onclick="seek(event)">
+                                <div id="progressBar" class="progress-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <a href="https://github.com/arkanintelligence-boop/zapelitepro/releases/download/v1.0.22/ZapElite_Pro_Setup_1.0.22.exe"
             class="btn-hero">
             <i data-lucide="download"></i>
@@ -233,8 +266,62 @@
 
     <div id="toast-container"></div>
 
+    <a href="https://wa.me/5537999056159" class="float-support" target="_blank">
+        <i data-lucide="message-circle"></i>
+        <span>Suporte Elite</span>
+    </a>
+
     <script>
         lucide.createIcons();
+
+        // Inicializa o controle do vídeo quando a página carrega
+        window.addEventListener('load', () => {
+            const video = document.getElementById('vslVideo');
+            if (video) {
+                video.ontimeupdate = () => {
+                    const progress = (video.currentTime / video.duration) * 100;
+                    const bar = document.getElementById('progressBar');
+                    if (bar) bar.style.width = `${progress}%`;
+                };
+            }
+        });
+
+        function enableSound(event) {
+            event.stopPropagation();
+            const video = document.getElementById('vslVideo');
+            const overlay = document.getElementById('soundOverlay');
+
+            video.muted = false;
+            video.currentTime = 0; // Reinicia para o começo com som
+            video.play();
+
+            overlay.classList.add('fade-out');
+            setTimeout(() => overlay.remove(), 500);
+        }
+
+        function togglePlay(event) {
+            event.stopPropagation();
+            const video = document.getElementById('vslVideo');
+            const icon = document.getElementById('playPauseIcon');
+
+            if (video.paused) {
+                video.play();
+                icon.setAttribute('data-lucide', 'pause');
+            } else {
+                video.pause();
+                icon.setAttribute('data-lucide', 'play');
+            }
+            lucide.createIcons();
+        }
+
+        function seek(event) {
+            event.stopPropagation();
+            const video = document.getElementById('vslVideo');
+            const container = event.currentTarget;
+            const rect = container.getBoundingClientRect();
+            const pos = (event.clientX - rect.left) / rect.width;
+            video.currentTime = pos * video.duration;
+        }
 
         function showNotification(message, type = 'success') {
             const container = document.getElementById('toast-container');
