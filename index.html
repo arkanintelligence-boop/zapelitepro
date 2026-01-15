@@ -28,7 +28,7 @@
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
                 n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
             };
             if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
             n.queue = []; t = b.createElement(e); t.async = !0;
@@ -267,6 +267,15 @@
             <a href="#" style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Privacidade</a>
             <a href="mailto:arkanintelligence@gmail.com"
                 style="color: var(--text-muted); text-decoration: none; font-size: 0.85rem;">Contato</a>
+        </div>
+        <div class="social-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
+            <a href="https://www.instagram.com/zapelite.pro" target="_blank" class="social-icon" title="Instagram">
+                <i data-lucide="instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61586656408764#" target="_blank" class="social-icon"
+                title="Facebook">
+                <i data-lucide="facebook"></i>
+            </a>
         </div>
         <p class="copyright" style="color: #444; font-size: 0.85rem; text-align: center;">© 2026 Arkan Intelligence.
             Todos os direitos reservados.</p>

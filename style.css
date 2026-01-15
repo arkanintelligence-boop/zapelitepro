@@ -1341,3 +1341,47 @@ video#vslVideo::-webkit-media-text-track-display {
 video#vslVideo::-webkit-media-text-track-view {
     display: none;
 }
+
+/* Social Links Styles */
+.social-icon {
+    color: var(--primary);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(30, 215, 96, 0.05);
+    border-radius: 50%;
+    border: 1px solid rgba(30, 215, 96, 0.1);
+    text-decoration: none;
+    animation: floatingSocial 3s ease-in-out infinite;
+}
+
+.social-icon:nth-child(2) {
+    animation-delay: 1.5s;
+}
+
+.social-icon:hover {
+    transform: scale(1.15) translateY(-5px);
+    background: rgba(30, 215, 96, 0.15);
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(30, 215, 96, 0.3);
+}
+
+.social-icon i {
+    width: 22px;
+    height: 22px;
+}
+
+@keyframes floatingSocial {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
