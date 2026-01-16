@@ -55,6 +55,7 @@
         <div class="nav-links">
             <a href="#features">Recursos</a>
             <a href="#pricing">Planos</a>
+            <a href="#faq">FAQ</a>
             <a href="mailto:arkanintelligence@gmail.com">Suporte</a>
             <a href="https://github.com/arkanintelligence-boop/zapelitepro/releases/download/v1.0.22/ZapElite_Pro_Setup_1.0.22.exe"
                 class="btn-download-small">Baixar para Windows</a>
@@ -250,6 +251,81 @@
                 </ul>
                 <a href="https://pay.kirvano.com/ce164641-ca6c-4ba3-98d3-29a33c879254" class="btn-pricing">Começar com
                     Desconto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO GARANTIA -->
+    <section class="guarantee-section">
+        <div class="guarantee-card">
+            <img src="garantia.png" alt="Selo de Garantia">
+            <div class="guarantee-content">
+                <div class="badge">RISCO ZERO</div>
+                <h2>Garantia Incondicional de 7 Dias</h2>
+                <p>Nossa confiança no ZapElite Pro é tão grande que oferecemos uma garantia completa. Se em até 7 dias
+                    você decidir que o software não é para você, basta solicitar o reembolso e devolveremos 100% do seu
+                    investimento, sem letras miúdas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="section-head">
+            <div class="badge">DÚVIDAS FREQUENTES</div>
+            <h2>Perguntas Comuns</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>O ZapElite Pro é seguro contra banimentos?</span>
+                    <i data-lucide="chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Sim! O ZapElite Pro foi desenvolvido com as mais avançadas técnicas de proteção, incluindo simulador
+                    de digitação humana, intervalos aleatórios e aquecimento inteligente de chips para minimizar riscos.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Posso usar em quantos computadores?</span>
+                    <i data-lucide="chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Cada licença é vinculada a um hardware específico (HWID). Você pode trocar de computador solicitando
+                    o reset da chave ao nosso suporte, mas o uso simultâneo em várias máquinas requer licenças
+                    adicionais.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Funciona em Mac ou Linux?</span>
+                    <i data-lucide="chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Atualmente o ZapElite Pro é um software nativo para Windows (versões 10 e 11). Não há suporte
+                    oficial para Mac ou Linux, a menos que utilize um emulador de Windows robusto.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Como recebo minha licença após o pagamento?</span>
+                    <i data-lucide="chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    O envio é instantâneo e automático. Assim que seu pagamento for confirmado, você receberá sua chave
+                    de acesso e o link de download diretamente no seu e-mail cadastrado.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Preciso pagar mensalidade ou é vitalício?</span>
+                    <i data-lucide="chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Trabalhamos com o modelo de assinatura (Mensal ou Trimestral). Isso nos permite manter o software
+                    sempre atualizado com as novas versões do WhatsApp e garantir o suporte técnico de alta qualidade.
+                </div>
             </div>
         </div>
     </section>
@@ -462,6 +538,23 @@
                 lucide.createIcons();
             }
         }
+
+        // FAQ Functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+
+                // Close all other items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 
